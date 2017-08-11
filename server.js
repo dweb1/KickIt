@@ -2,7 +2,9 @@ require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const TeamsController = require("./controllers/team");
 const app = express();
+
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI); //mongodb://localhost/KickIt
 
@@ -17,6 +19,9 @@ connection.on('error', (err) => {
 }); 
 
 app.use(bodyParser.json());
+
+app.use('/api/team', TeamsController);
+
 app.get('/', (req,res) => {
   res.send('Hello world!')
 })

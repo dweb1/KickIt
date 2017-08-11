@@ -22,7 +22,7 @@ const buffon = new Player({
 
 const juventus = new Team({
     name: "Juventus FC",
-    crestURL: String,
+    crestURL: "http://upload.wikimedia.org/wikipedia/de/d/d2/Juventus_Turin.svg",
     roster: [buffon],
     fixtures: "test"
 });
