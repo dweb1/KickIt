@@ -10,7 +10,8 @@ class Search extends Component {
             team: {
                 name: "",
                 crestUrl: "",
-                rosterUrl: ""
+                roster: "",
+                fixtures: ""
             }
             }
         }
@@ -31,7 +32,8 @@ class Search extends Component {
                     team: {
                         name: res.data.shortName,
                         crestUrl: res.data.crestUrl,
-                        rosterUrl: res.data._links.players.href
+                        roster: res.data._links.players.href,
+                        fixtures: res.data._links.fixtures.href
                 }
                 })
         })
