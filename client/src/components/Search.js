@@ -8,6 +8,7 @@ class Search extends Component {
         this.state = {
             player: "",
             team: {
+                id: "",
                 name: "",
                 crestUrl: "",
                 roster: "",
@@ -16,28 +17,65 @@ class Search extends Component {
             }
         }
 
-    componentWillMount(){
-
-    }
-
     _searchByTeam = () => {
-        const teamFound = document.getElementById("team-search-box").value;
-        axios.get('http://api.football-data.org/v1/teams/109', {
+        const searchTeam = document.getElementById("team-search-box").value;
+        axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
             timeout: 5000,
-            headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+            headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
         })
             .then((res) => {
-                console.log(res)
-                this.setState({
-                    team: {
-                        name: res.data.shortName,
-                        crestUrl: res.data.crestUrl,
-                        roster: res.data._links.players.href,
-                        fixtures: res.data._links.fixtures.href
-                }
+                const foundTeamId = res.data.teams[0].id;         
+                const newState = {...this.state};   
+                newState.team.id = foundTeamId;    
+                this.setState(newState);
+            })
+            .then(() =>{
+                axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
+                timeout: 5000,
+                headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
                 })
-        })
-    }
+                    .then((res) => {
+                        this.setState({ 
+                            team: {
+                                name: res.data.name,
+                                crestUrl: res.data.crestUrl,
+                                roster: res.data._links.players.href,
+                                fixtures: res.data._links.fixtures.href
+                            }
+                        })
+                    })
+                }
+        )}
+
+    // _searchByPlayer = () => {
+    //     const searchPlayer = document.getElementById("player-search-box").value;
+    //     axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
+    //         timeout: 5000,
+    //         headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
+    //     })
+    //         .then((res) => {
+    //             const foundTeamId = res.data.teams[0].id;         
+    //             const newState = {...this.state};   
+    //             newState.team.id = foundTeamId;    
+    //             this.setState(newState);
+    //         })
+    //         .then(() =>{
+    //             axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
+    //             timeout: 5000,
+    //             headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+    //             })
+    //                 .then((res) => {
+    //                     this.setState({ 
+    //                         team: {
+    //                             name: res.data.name,
+    //                             crestUrl: res.data.crestUrl,
+    //                             roster: res.data._links.players.href,
+    //                             fixtures: res.data._links.fixtures.href
+    //             }
+    //             })
+    //         })
+    //     }
+    // )}
 
     render() {
     return (
@@ -45,9 +83,9 @@ class Search extends Component {
       <strong>Search by:</strong> Team <em>or</em> Player
 
       <div className="search">
-        <form id="team-search-form" method="get">
+        <form id="team-search-form" method="get" action="/team">
           <input id="team-search-box" type="text" name="title" placeholder="TEAM NAME" />
-          <input onClick={this._searchByTeam} type="button" value="Search" />
+          <input onClick={this._searchByTeam} type="submit" value="Search" />
           
         </form>
       </div>
