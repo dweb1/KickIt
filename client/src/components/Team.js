@@ -3,7 +3,10 @@ import React from 'react';
 const Team = (props) => {
 
         return (
-            <div>Hello from Team</div>
+            <div>
+                <h2>{props.teamInfo.team.name}</h2>
+                <img alt={props.teamInfo.team.name} src={props.teamInfo.team.crestUrl} />
+            </div>
         )
     }
 

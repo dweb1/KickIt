@@ -58,9 +58,10 @@ class App extends Component {
         }
     }
   
-_handleSubmit = (event) => {
-  event.preventDefault();
-  window.location = "/team";        
+_handleSubmit = () => {
+  const newState = {...this.state};   
+  this.setState(newState); 
+
   }
 
 _searchByTeam = () => {

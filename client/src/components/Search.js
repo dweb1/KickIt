@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 const Search = (props) => {
 
@@ -9,7 +11,7 @@ const Search = (props) => {
       <div className="search">
         <form id="team-search-form" method="get" onSubmit={props.handleSubmit}>
           <input id="team-search-box" type="text" name="title" placeholder="TEAM NAME" />
-          <input onClick={props.searchByTeam} type="submit" value="Search" />
+          <Link to="/team" onClick={props.searchByTeam}>Submit</Link>
           
         </form>
       </div>
