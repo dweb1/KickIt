@@ -15,9 +15,6 @@ const HomePage = styled.div`
     flex-direction: column;
     align-items: center;
 `
-const HomeSearchButton = styled.div`
-    height: 40px;
-`
 
 class Home extends Component {
     constructor(){
@@ -43,11 +40,9 @@ class Home extends Component {
         return (
             <div>
                 <HomePage>
-                    <HomeSearchButton>
                         <form method="get" action="/search">
                             <button type="submit">Go to Search</button>
                         </form>
-                    </HomeSearchButton>
                     <ScoreBox>
                         <UpcomingFixtures fixtures={this.state.fixtures}/>
                         <RecentResults fixtures={this.state.fixtures} />
