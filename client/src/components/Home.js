@@ -1,8 +1,21 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Fixture from './Fixture';
+import styled from 'styled-components';
+import UpcomingFixtures from './UpcomingFixtures'
+import RecentResults from './RecentResults'
 
-// var fixtureResponse = [];
+const ScoreBox = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const HomePage = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const HomeSearchButton = styled.div`
+    height: 40px;
+`
 
 class Home extends Component {
     constructor(){
@@ -27,12 +40,17 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <form method="get" action="/search">
-                    <button type="submit">Go to Search</button>
-                </form>
-                <h3>Upcoming Fixtures</h3>
-                {this.state.fixtures.map((fixture, i) => {
-                    return <Fixture key={i} date={fixture.date} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName} />})}
+                <HomePage>
+                    <HomeSearchButton>
+                        <form method="get" action="/search">
+                            <button type="submit">Go to Search</button>
+                        </form>
+                    </HomeSearchButton>
+                    <ScoreBox>
+                        <UpcomingFixtures fixtures={this.state.fixtures}/>
+                        <RecentResults fixtures={this.state.fixtures} />
+                    </ScoreBox>
+                </HomePage>
             </div>
         )
     }
