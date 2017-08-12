@@ -57,6 +57,11 @@ class App extends Component {
         }
         }
     }
+  
+_handleSubmit = (event) => {
+  event.preventDefault();
+  window.location = "/team";        
+  }
 
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;
@@ -119,12 +124,11 @@ _searchByTeam = () => {
 // )}
 
   render() {
-
     const searchComponent = () => (
-    <Search searchByTeam={this._searchByTeam} /> );
+    <Search handleSubmit={this._handleSubmit} searchByTeam={this._searchByTeam} /> );
 
     const teamComponent = () => (
-      <Team teamInfo={this.state.team} /> );
+      <Team teamInfo={this.state} /> );
 
     return (
       <Router>

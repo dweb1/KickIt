@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Team extends Component {
-    render() {
+const Team = (props) => {
+
         return (
             <div>Hello from Team</div>
         )
     }
-}
 
 export default Team;

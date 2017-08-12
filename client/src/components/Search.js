@@ -7,9 +7,9 @@ const Search = (props) => {
       <strong>Search by:</strong> Team <em>or</em> Player
 
       <div className="search">
-        <form id="team-search-form" method="get" action="/team">
+        <form id="team-search-form" method="get" onSubmit={props.handleSubmit}>
           <input id="team-search-box" type="text" name="title" placeholder="TEAM NAME" />
-          <input onClick={props.searchByTeam} type="button" value="Search" />
+          <input onClick={props.searchByTeam} type="submit" value="Search" />
           
         </form>
       </div>
