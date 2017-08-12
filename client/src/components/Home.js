@@ -7,6 +7,8 @@ import RecentResults from './RecentResults'
 const ScoreBox = styled.div`
     display: flex;
     flex-direction: row;
+    border-style: dashed;
+    border-width: 8px;
 `
 const HomePage = styled.div`
     display: flex;

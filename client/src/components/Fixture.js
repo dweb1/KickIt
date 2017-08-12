@@ -3,7 +3,7 @@ import React from 'react';
 const Fixture = (props) => {
 
         return (
-            <p>{props.homeTeam} v. {props.awayTeam} on {props.date}</p>
+            props.status !== "FINISHED" ? <p>{props.homeTeam} v. {props.awayTeam} on {props.date}</p> : <p>{props.homeTeam} <em><strong>[{props.result.goalsHomeTeam}] - [{props.result.goalsAwayTeam}]</strong></em> {props.awayTeam}</p>
         )
     }
 
