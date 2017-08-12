@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FaFutbolO } from 'react-icons/lib/fa';
 import styled from 'styled-components';
+import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 // import Player from "./components/Player";
@@ -43,7 +44,88 @@ a {
 
 class App extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+        player: "",
+        team: {
+            id: "",
+            name: "",
+            crestUrl: "",
+            roster: "",
+            fixtures: ""
+        }
+        }
+    }
+
+_searchByTeam = () => {
+    const searchTeam = document.getElementById("team-search-box").value;
+    axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
+        timeout: 5000,
+        headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
+    })
+        .then((res) => {
+            const foundTeamId = res.data.teams[0].id;         
+            const newState = {...this.state};   
+            newState.team.id = foundTeamId;    
+            this.setState(newState);
+        })
+        .then(() =>{
+            axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
+            timeout: 5000,
+            headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+            })
+                .then((res) => {
+                    this.setState({ 
+                        team: {
+                            name: res.data.name,
+                            crestUrl: res.data.crestUrl,
+                            roster: res.data._links.players.href,
+                            fixtures: res.data._links.fixtures.href
+                        }
+                    })
+                })
+            }
+    )}
+
+// _searchByPlayer = () => {
+//     const searchPlayer = document.getElementById("player-search-box").value;
+//     axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
+//         timeout: 5000,
+//         headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
+//     })
+//         .then((res) => {
+//             const foundTeamId = res.data.teams[0].id;         
+//             const newState = {...this.state};   
+//             newState.team.id = foundTeamId;    
+//             this.setState(newState);
+//         })
+//         .then(() =>{
+//             axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
+//             timeout: 5000,
+//             headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+//             })
+//                 .then((res) => {
+//                     this.setState({ 
+//                         team: {
+//                             name: res.data.name,
+//                             crestUrl: res.data.crestUrl,
+//                             roster: res.data._links.players.href,
+//                             fixtures: res.data._links.fixtures.href
+//             }
+//             })
+//         })
+//     }
+// )}
+
   render() {
+
+    const searchComponent = () => (
+    <Search searchByTeam={this._searchByTeam} /> );
+
+    const teamComponent = () => (
+      <Team teamInfo={this.state.team} /> );
+
     return (
       <Router>
         <div>
@@ -58,8 +140,8 @@ class App extends Component {
           <div>
             <Route exact path="/" component={Home} />
             {/* <Route path="/player/:playerId" component={Player} /> */}
-            <Route path="/team" component={Team} />
-            <Route path="/search" component={Search} />
+            <Route path="/team" render={teamComponent} />
+            <Route path="/search" render={searchComponent} />
           </div>
         </div>
       </Router>
