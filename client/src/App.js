@@ -57,12 +57,6 @@ class App extends Component {
         }
         }
     }
-  
-_handleSubmit = () => {
-  const newState = {...this.state};   
-  this.setState(newState); 
-
-  }
 
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;
@@ -84,6 +78,7 @@ _searchByTeam = () => {
                 .then((res) => {
                     this.setState({ 
                         team: {
+                            id: res.data.id,
                             name: res.data.name,
                             crestUrl: res.data.crestUrl,
                             roster: res.data._links.players.href,
