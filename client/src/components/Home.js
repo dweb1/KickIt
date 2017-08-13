@@ -9,6 +9,9 @@ const ScoreBox = styled.div`
     flex-direction: row;
     border-style: dashed;
     border-width: 8px;
+    background-color: white;
+    overflow-y: scroll;
+    height: 750px;
 `
 const HomePage = styled.div`
     display: flex;

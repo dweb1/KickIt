@@ -42,6 +42,12 @@ a {
 }
 `;
 
+const HomeScreen = styled.div`
+  background-image: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg");
+  background-repeat:no-repeat;
+  background-size:100%;
+`
+
 class App extends Component {
 
   constructor(){
@@ -89,36 +95,6 @@ _searchByTeam = () => {
             }
     )}
 
-// _searchByPlayer = () => {
-//     const searchPlayer = document.getElementById("player-search-box").value;
-//     axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
-//         timeout: 5000,
-//         headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
-//     })
-//         .then((res) => {
-//             const foundTeamId = res.data.teams[0].id;         
-//             const newState = {...this.state};   
-//             newState.team.id = foundTeamId;    
-//             this.setState(newState);
-//         })
-//         .then(() =>{
-//             axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
-//             timeout: 5000,
-//             headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
-//             })
-//                 .then((res) => {
-//                     this.setState({ 
-//                         team: {
-//                             name: res.data.name,
-//                             crestUrl: res.data.crestUrl,
-//                             roster: res.data._links.players.href,
-//                             fixtures: res.data._links.fixtures.href
-//             }
-//             })
-//         })
-//     }
-// )}
-
   render() {
     const searchComponent = () => (
     <Search handleSubmit={this._handleSubmit} searchByTeam={this._searchByTeam} /> );
@@ -137,12 +113,14 @@ _searchByTeam = () => {
             <Link to="/">Home</Link>
             <Link to="#">Profile</Link>
           </NavBar>
-          <div>
-            <Route exact path="/" component={Home} />
-            {/* <Route path="/player/:playerId" component={Player} /> */}
-            <Route path="/team" render={teamComponent} />
-            <Route path="/search" render={searchComponent} />
-          </div>
+          <HomeScreen>
+            <div>
+              <Route exact path="/" component={Home} />
+              {/* <Route path="/player/:playerId" component={Player} /> */}
+              <Route path="/team" render={teamComponent} />
+              <Route path="/search" render={searchComponent} />
+            </div>
+          </HomeScreen>
         </div>
       </Router>
     );

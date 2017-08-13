@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import UpcomingFixtures from './UpcomingFixtures'
 import axios from 'axios';
 import Fixture from './Fixture'
@@ -7,6 +7,7 @@ var teamFixtures = [];
 
 const Team = (props) => {
     var linkToFixtures = props.teamInfo.team.fixtures;
+    
     axios.get(linkToFixtures, {
         timeout: 5000,
         headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
@@ -14,7 +15,6 @@ const Team = (props) => {
         .then((res) => {
             teamFixtures = res.data.fixtures;
         })
-    
 
         return (
             <div>
