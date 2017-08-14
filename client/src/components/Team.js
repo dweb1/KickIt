@@ -9,8 +9,8 @@ const Team = (props) => {
             <h2>{props.teamInfo.team.name}</h2>
             <img height="100" alt={props.teamInfo.team.name} src={props.teamInfo.team.crestUrl} />
             <h3>Fixtures</h3>
-            {/* {teamFixtures.map((fixture, i) => {
-                    <Fixture key={i} status={fixture.status} date={fixture.date} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName} /> })} */}
+            {props.teamInfo.searchedTeamFixtures.map((fixture, i) => {
+                   return <Fixture key={i} status={fixture.status} date={fixture.date} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName} /> })}
         </div>
     )
 }
