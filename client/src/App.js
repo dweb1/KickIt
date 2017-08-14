@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 // import Player from "./components/Player";
 import Team from "./components/Team";
+import Roster from "./components/Roster";
 
 
 const SiteSymbol = styled.div`
@@ -13,7 +14,6 @@ const SiteSymbol = styled.div`
   font-weight: 500;
   margin-right: 5px;
   font-size: 30px; 
-  margin
 `
 
 const TitleBox = styled.div`
@@ -52,7 +52,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-        player: "",
+        searchedTeamRoster: [],
         searchedTeamFixtures: [],
         team: {
             id: "",
@@ -103,6 +103,17 @@ _searchByTeam = () => {
                     })
                   })
                 })
+                .then(() => {
+                  axios.get(this.state.team.roster, {
+                    timeout: 5000,
+                    headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+                  })
+                  .then((res) => {
+                    this.setState({
+                      searchedTeamRoster: res.data.players
+                    })
+                  })
+                })
             })
         }
 
@@ -112,6 +123,9 @@ _searchByTeam = () => {
 
     const teamComponent = () => (
       <Team teamInfo={this.state} /> );
+
+    const rosterComponent = () => (
+      <Roster teamInfo = {this.state} /> );
 
     return (
       <Router>
@@ -127,7 +141,7 @@ _searchByTeam = () => {
           <HomeScreen>
             <div>
               <Route exact path="/" render={homeComponent} /> 
-              {/* <Route path="/player/:playerId" component={Player} /> */}
+              <Route path="/roster" render={rosterComponent} />
               <Route path="/team" render={teamComponent} />
             </div>
           </HomeScreen>
