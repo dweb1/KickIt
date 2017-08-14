@@ -1,5 +1,4 @@
 import React from 'react';
-import UpcomingFixtures from './UpcomingFixtures'
 import Fixture from './Fixture'
 import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
