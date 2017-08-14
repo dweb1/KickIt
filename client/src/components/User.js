@@ -9,7 +9,7 @@ const User = (props) => {
             Hello User
         </div> :
         <div>
-            <NewUserForm />
+            <NewUserForm userInfo = {props.user} changeUsername={props.changeUsername} handleSubmit={props.handleSubmit}/>
         </div>)
     )
 }

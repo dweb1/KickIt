@@ -71,6 +71,22 @@ class App extends Component {
         }
     }
 
+  _handleSubmit = (event) => {
+    event.preventDefault();
+    const newState = {...this.state};
+    newState.user.accountCreated = new Date();
+    this.setState(newState);
+    axios.post('/api/user', this.state.user).then((res) => {
+      console.log("success");
+    })
+  };
+
+_changeUsername = (event) => {
+    const newState = {...this.state};
+    newState.user.username = event.target.value;
+    this.setState(newState);
+};
+
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;
     axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
@@ -135,7 +151,7 @@ _searchByTeam = () => {
       <Roster teamInfo = {this.state} /> );
 
     const userComponent = () => (
-      <User userInfo = {this.state.user}/>);
+      <User userInfo = {this.state.user} changeUsername={this._changeUsername} handleSubmit={this._handleSubmit}/>);
 
     return (
       <Router>
