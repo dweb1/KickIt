@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FaFutbolO } from 'react-icons/lib/fa';
 import styled from 'styled-components';
 import axios from 'axios';
-import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 // import Player from "./components/Player";
 import Team from "./components/Team";
@@ -91,10 +91,8 @@ _searchByTeam = () => {
                             fixtures: res.data._links.fixtures.href
                         }
                     })
-                    console.log(this.state.team.fixtures);
                 })
                 .then(() => {
-                  console.log(this.state.team.fixtures);
                   axios.get(this.state.team.fixtures, {
                     timeout: 5000,
                     headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
@@ -128,10 +126,9 @@ _searchByTeam = () => {
           </NavBar>
           <HomeScreen>
             <div>
-              {this.state.team.name === "" ? <Route exact path="/" render={homeComponent} /> : <Redirect to="/team" render={teamComponent} /> }
+              <Route exact path="/" render={homeComponent} /> 
               {/* <Route path="/player/:playerId" component={Player} /> */}
-              {/* <Route path="/team" render={teamComponent} /> */}
-              {/* <Route path="/search" render={searchComponent} /> */}
+              <Route path="/team" render={teamComponent} />
             </div>
           </HomeScreen>
         </div>

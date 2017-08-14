@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {withRouter} from 'react-router-dom';
 
 const Button = styled.a`
 border-radius: 5px;
@@ -30,6 +31,10 @@ box-shadow: 0px 5px 0px 0px rgba(0%, 100%, 0%)
 `;
 
 const Search = (props) => {
+    const handleClick = (e, history) => {
+      props.history.push('/team');
+      props.searchByTeam();
+    };
 
     return (
       <div>
@@ -38,7 +43,7 @@ const Search = (props) => {
       <div className="search">
         <form id="team-search-form" method="get" >
           <input id="team-search-box" type="text" name="title" placeholder="TEAM NAME" />
-          <SearchButton onClick={props.searchByTeam}>
+          <SearchButton onClick={handleClick}>
             Search
           </SearchButton>
         </form>
@@ -47,4 +52,4 @@ const Search = (props) => {
   );
 };
 
-export default Search;
+export default withRouter(Search);
