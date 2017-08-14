@@ -27,7 +27,16 @@ const juventus = new Team({
     fixtures: "test"
 });
 
+const dave = new User({
+    username: 'dweb',
+    accountCreated: "test",
+    favTeams: [],
+    favPlayers: []
+})
+
 juventus.save().then(() => console.log("La Vecchia Signora Saved!"));
-buffon.save().then(() => console.log("Numero Uno Saved!"))
+buffon.save().then(() => console.log("Numero Uno Saved!"));
+dave.save().then(() => console.log("Dave Saved!"));
+
 
 mongoose.connection.close();
