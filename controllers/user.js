@@ -15,6 +15,13 @@ router.get("/:id", (req, res) => {
   })
 })
 
-
+router.post("/", (req, res) => {
+  const newUser = new User();
+  newUser.username = req.body.username;
+  const accountCreated = req.body.accountCreated;
+  newUser.save().then((user) => {
+    res.json(user);
+  }).catch(err => console.log(err));
+})
 
 module.exports = router;

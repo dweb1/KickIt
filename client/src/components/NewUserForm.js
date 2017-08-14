@@ -16,7 +16,7 @@ class NewUserForm extends Component {
     _handleSubmit = (event) => {
         event.preventDefault();
         this.setState({accountCreated: new Date()});
-        axios.post('/api/user', this.state.user).then((res) => {
+        axios.post('/api/user', this.state).then((res) => {
           console.log("success");
         })
       };
