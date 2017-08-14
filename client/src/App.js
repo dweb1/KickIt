@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { FaFutbolO } from 'react-icons/lib/fa';
 import styled from 'styled-components';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 // import Player from "./components/Player";
 import Team from "./components/Team";
-import Search from "./components/Search";
 
 
 const SiteSymbol = styled.div`
@@ -43,9 +42,9 @@ a {
 `;
 
 const HomeScreen = styled.div`
-  background-image: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg");
-  background-repeat:no-repeat;
-  background-size:100%;
+  background: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
+  background-size: 100% 100%;
+  height:750px;
 `
 
 class App extends Component {
@@ -54,6 +53,7 @@ class App extends Component {
     super();
     this.state = {
         player: "",
+        searchedTeamFixtures: [],
         team: {
             id: "",
             name: "",
@@ -91,13 +91,26 @@ _searchByTeam = () => {
                             fixtures: res.data._links.fixtures.href
                         }
                     })
+                    console.log(this.state.team.fixtures);
                 })
-            }
-    )}
+                .then(() => {
+                  console.log(this.state.team.fixtures);
+                  axios.get(this.state.team.fixtures, {
+                    timeout: 5000,
+                    headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
+                  })
+                    .then((res) => {
+                      this.setState({
+                      searchedTeamFixtures: res.data.fixtures
+                    })
+                  })
+                })
+            })
+        }
 
   render() {
-    const searchComponent = () => (
-    <Search handleSubmit={this._handleSubmit} searchByTeam={this._searchByTeam} /> );
+    const homeComponent = () => (
+    <Home searchByTeam={this._searchByTeam} /> );
 
     const teamComponent = () => (
       <Team teamInfo={this.state} /> );
@@ -115,10 +128,10 @@ _searchByTeam = () => {
           </NavBar>
           <HomeScreen>
             <div>
-              <Route exact path="/" component={Home} />
+              {this.state.team.name === "" ? <Route exact path="/" render={homeComponent} /> : <Redirect to="/team" render={teamComponent} /> }
               {/* <Route path="/player/:playerId" component={Player} /> */}
-              <Route path="/team" render={teamComponent} />
-              <Route path="/search" render={searchComponent} />
+              {/* <Route path="/team" render={teamComponent} /> */}
+              {/* <Route path="/search" render={searchComponent} /> */}
             </div>
           </HomeScreen>
         </div>

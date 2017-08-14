@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import UpcomingFixtures from './UpcomingFixtures'
 import RecentResults from './RecentResults'
+import Search from './Search'
 
 const ScoreBox = styled.div`
     display: flex;
@@ -43,9 +44,7 @@ class Home extends Component {
         return (
             <div>
                 <HomePage>
-                        <form method="get" action="/search">
-                            <button type="submit">Go to Search</button>
-                        </form>
+                    <Search searchByTeam={this.props.searchByTeam} />
                     <ScoreBox>
                         <UpcomingFixtures fixtures={this.state.fixtures}/>
                         <RecentResults fixtures={this.state.fixtures} />
