@@ -7,6 +7,7 @@ import Home from "./components/Home";
 // import Player from "./components/Player";
 import Team from "./components/Team";
 import Roster from "./components/Roster";
+import User from "./components/User";
 
 
 const SiteSymbol = styled.div`
@@ -127,6 +128,9 @@ _searchByTeam = () => {
     const rosterComponent = () => (
       <Roster teamInfo = {this.state} /> );
 
+    const userComponent = () => (
+      <User />);
+
     return (
       <Router>
         <div>
@@ -136,13 +140,14 @@ _searchByTeam = () => {
               <FaFutbolO size={25}/>
             </TitleBox>
             <Link to="/">Home</Link>
-            <Link to="#">Profile</Link>
+            <Link to="/user">Profile</Link>
           </NavBar>
           <HomeScreen>
             <div>
               <Route exact path="/" render={homeComponent} /> 
               <Route path="/roster" render={rosterComponent} />
               <Route path="/team" render={teamComponent} />
+              <Route path="/user" render={userComponent} />
             </div>
           </HomeScreen>
         </div>
