@@ -1,24 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
+import NewUserForm from  './NewUserForm.js';
 
-class User extends Component {
+const User = (props) => {
     
-    constructor(){
-        super();
-        this.state = {
-            userName: "",
-            accountCreated: "",
-            favTeams: [],
-            favPlayers: []
-        }
-    }
-    
-    render() {
     return (
+        (props.user ? 
         <div>
             Hello User
-        </div>
+        </div> :
+        <div>
+            <NewUserForm />
+        </div>)
     )
-}
 }
 
 

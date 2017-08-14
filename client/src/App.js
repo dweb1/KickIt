@@ -53,6 +53,12 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
+        user: {
+          username: "",
+          accountCreated: "",
+          favTeams: [],
+          favPlayers: []
+      },
         searchedTeamRoster: [],
         searchedTeamFixtures: [],
         team: {
@@ -129,7 +135,7 @@ _searchByTeam = () => {
       <Roster teamInfo = {this.state} /> );
 
     const userComponent = () => (
-      <User />);
+      <User userInfo = {this.state.user}/>);
 
     return (
       <Router>
