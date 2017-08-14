@@ -72,20 +72,21 @@ class App extends Component {
     }
 
   _handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const newState = {...this.state};
     newState.user.accountCreated = new Date();
+    newState.user.username = document.getElementById("usernameInputOnForm").value;
     this.setState(newState);
     axios.post('/api/user', this.state.user).then((res) => {
       console.log("success");
     })
   };
 
-_changeUsername = (event) => {
-    const newState = {...this.state};
-    newState.user.username = event.target.value;
-    this.setState(newState);
-};
+  // _changeUsername = (event) => {
+  //     const newState = {...this.state};
+  //     newState.user.username = event.target.value;
+  //     this.setState(newState);
+  // };
 
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;

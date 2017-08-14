@@ -1,18 +1,24 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 const NewUserForm = (props) => {
+    
+    const handleClick = (e, history) => {
+        e.preventDefault();
+        props.handleSubmit();
+      };
 
     return (
         <div>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleClick}>
                 <div>
                     <label htmlFor="username">Username:</label>
-                    <input onChange={props.changeUsername} value={props.username} type="text" name="username" required/>
-                    <button>Add User</button>
+                    <input id="usernameInputOnForm" value={props.username} type="text" name="username" required/>
+                    <input type="submit" value="Add User"/>
                 </div>
             </form>
         </div>
     )
 }
 
-export default NewUserForm;
+export default withRouter(NewUserForm);
