@@ -169,13 +169,29 @@ _searchByTeam = () => {
     const newState = {...this.state};
     newState.user.favPlayers.splice(index, 1);
     this.setState(newState);
-  };
+    const payload = {
+      favPlayers: newState.favPlayers
+    };
+    axios.put(`api/user/${this.state.user.id}/updatefavplayers`, payload)
+      .then((res) => {
+        console.log("Successfully Updated");
+        this.setState(newState.user.favPlayers);
+      })
+    }
 
   _removeTeamFromUserFavs = (index) => {
     const newState = {...this.state};
     newState.user.favTeams.splice(index, 1);
     this.setState(newState);
-  };
+    const payload = {
+      favTeams: newState.favTeams
+    };
+    axios.put(`api/user/${this.state.user.id}/updatefavteams`, payload)
+      .then((res) => {
+        console.log("Successfully Updated");
+        this.setState(newState.user.favTeams);
+      })
+    };
 
   render() {
     const homeComponent = () => (

@@ -20,15 +20,13 @@ connection.on('error', (err) => {
 }); 
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/client/build/'));
 
 app.use('/api/team', TeamsController);
-
 app.use('/api/user', UserController);
-
-
-app.get('/', (req,res) => {
-  res.send('Hello world!')
-})
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
