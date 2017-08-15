@@ -18,7 +18,12 @@ const Roster = (props) => {
             <RosterBox>
             <h3> {props.teamInfo.team.name}'s Roster</h3>
             {props.teamInfo.searchedTeamRoster.map((player, i) => {
-                return <Player key={i} name={player.name} nationality={player.nationality} position={player.position} jerseyNumber={player.jerseyNumber} dateOfBirth={player.dateOfBirth} />
+                return <Player 
+                            key={i} id={i} name={player.name}
+                            nationality={player.nationality} position={player.position}
+                            jerseyNumber={player.jerseyNumber} 
+                            dateOfBirth={player.dateOfBirth} 
+                            addPlayerToUserFavorites={props.addPlayerToUserFavorites}/>
             })}
             </RosterBox>
         </div>

@@ -82,11 +82,20 @@ class App extends Component {
     })
   };
 
-  // _changeUsername = (event) => {
-  //     const newState = {...this.state};
-  //     newState.user.username = event.target.value;
-  //     this.setState(newState);
-  // };
+_addPlayerToUserFavorites = (newPlayer, index) => {
+  const newState = {...this.state.user};
+  newState.favPlayers.push(newPlayer);
+  this.setState({user: newState});
+  const payload = {
+    favPlayers: newState.favPlayers
+  };
+  console.log(payload);
+  axios.put(`api/user/${this.state.id}`, payload).then((res) => {
+    console.log("Successfully Updated")
+    this.setState({user: newState});
+    
+  })
+}
 
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;
@@ -149,7 +158,7 @@ _searchByTeam = () => {
       <Team teamInfo={this.state} /> );
 
     const rosterComponent = () => (
-      <Roster teamInfo = {this.state} /> );
+      <Roster addPlayerToUserFavorites={this._addPlayerToUserFavorites} teamInfo = {this.state} /> );
 
     const userComponent = () => (
       <User userInfo = {this.state.user} changeUsername={this._changeUsername} handleSubmit={this._handleSubmit}/>);

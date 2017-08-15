@@ -25,4 +25,10 @@ router.post("/", (req, res) => {
   }).catch(err => console.log(err));
 })
 
+router.put("/:id", (req, res) => {
+  User.findByIdAndUpdate(req.params.id, {favPlayers: req.body.favPlayers}).then((favPlayers) =>{
+    res.json(favPlayers);
+  })
+});
+
 module.exports = router;

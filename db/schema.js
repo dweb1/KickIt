@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const playerSchema = mongoose.Schema({
   name: String,
+  nationality: String,
   position: String,
   jerseyNumber: Number,
   dateOfBirth: String,
