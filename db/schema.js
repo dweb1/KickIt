@@ -20,8 +20,8 @@ const fixtureSchema = mongoose.Schema({
 const teamSchema = mongoose.Schema({
   name: String,
   crestURL: String,
-  roster: [playerSchema],
-  fixtures: [String]
+  roster: String,
+  fixtures: String
 });
 
 const userSchema = mongoose.Schema({

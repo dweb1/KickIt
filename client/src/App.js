@@ -91,7 +91,7 @@ _addPlayerToUserFavorites = (newPlayer, index) => {
   const payload = {
     favPlayers: newState.favPlayers
   };
-  axios.put(`api/user/${this.state.user.id}`, payload).then((res) => {
+  axios.put(`api/user/${this.state.user.id}/updatefavplayers`, payload).then((res) => {
     console.log("Successfully Updated")
     this.setState({user: newState});
     
@@ -101,12 +101,14 @@ _addPlayerToUserFavorites = (newPlayer, index) => {
 _addTeamToUserFavorites = (newTeam, index) => {
   const newState = {...this.state.user};
   newState.favTeams.push(newTeam.teamInfo.team);
-  const payload = {...newState.favTeams};
-  console.log(payload);
+  const payload = {
+    favTeams: newState.favTeams
+  };
   this.setState({user: newState});
-  axios.put(`api/user/${this.state.user.id}`, payload).then((res) => {
+  axios.put(`api/user/${this.state.user.id}/updatefavteams`, payload).then((res) => {
     console.log("Successfully Updated");
-    console.log(newState);
+    this.setState({user: newState});
+    
   })
 }
 

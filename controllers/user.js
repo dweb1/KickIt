@@ -25,10 +25,17 @@ router.post("/", (req, res) => {
   }).catch(err => console.log(err));
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id/updatefavplayers", (req, res) => {
   User.findByIdAndUpdate(req.params.id, {favPlayers: req.body.favPlayers})
   .then((favPlayers) =>{
     res.json(favPlayers);
+  })
+});
+
+router.put("/:id/updatefavteams", (req, res) => {
+  User.findByIdAndUpdate(req.params.id, {favTeams: req.body.favTeams})
+  .then((favTeams) =>{
+    res.json(favTeams);
   })
 });
 
