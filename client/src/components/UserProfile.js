@@ -19,10 +19,14 @@ const UserProfile = (props) => {
                     <h4>Favorite Teams</h4>
                     <ul>
                     {props.userInfo.favTeams.map((team, i) => {
-                    return 
+                    return (
                         <li key={i} id={i}>
-                            {team.name}
-                        </li>})}
+                            <p>{team.name}</p>
+                            <button onClick={() => props.removeTeamFromUserFavs(i)}>
+                                Remove
+                            </button>
+                        </li>
+                    )})}
                     </ul>
                 </FavoritesBox>
             </div>

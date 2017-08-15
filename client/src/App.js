@@ -166,9 +166,14 @@ _searchByTeam = () => {
         }
   
   _removePlayerFromUserFavs = (index) => {
-    console.log(index)
     const newState = {...this.state};
     newState.user.favPlayers.splice(index, 1);
+    this.setState(newState);
+  };
+
+  _removeTeamFromUserFavs = (index) => {
+    const newState = {...this.state};
+    newState.user.favTeams.splice(index, 1);
     this.setState(newState);
   };
 
@@ -187,7 +192,8 @@ _searchByTeam = () => {
         userInfo = {this.state.user} 
         changeUsername={this._changeUsername} 
         handleSubmit={this._handleSubmit}
-        removePlayerFromUserFavs={this._removePlayerFromUserFavs}/>);
+        removePlayerFromUserFavs={this._removePlayerFromUserFavs}
+        removeTeamFromUserFavs={this._removeTeamFromUserFavs}/>);
 
     return (
       <Router>

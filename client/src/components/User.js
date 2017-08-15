@@ -9,7 +9,8 @@ const User = (props) => {
         <div>
             <UserProfile 
                 userInfo={props.userInfo}
-                removePlayerFromUserFavs={props.removePlayerFromUserFavs}/>
+                removePlayerFromUserFavs={props.removePlayerFromUserFavs}
+                removeTeamFromUserFavs={props.removeTeamFromUserFavs}/>
         </div> :
         <div>
             <NewUserForm userInfo={props.user} changeUsername={props.changeUsername} handleSubmit={props.handleSubmit}/>
