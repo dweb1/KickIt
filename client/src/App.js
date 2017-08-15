@@ -43,7 +43,7 @@ a {
 `;
 
 const HomeScreen = styled.div`
-  background: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
+  background: url("https://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
   background-size: 100% 100%;
   height:750px;
 `
@@ -114,7 +114,7 @@ _addTeamToUserFavorites = (newTeam, index) => {
 
 _searchByTeam = () => {
     const searchTeam = document.getElementById("team-search-box").value;
-    axios.get('http://api.football-data.org/v1/teams/?name=' + searchTeam, {
+    axios.get('https://api.football-data.org/v1/teams/?name=' + searchTeam, {
         timeout: 5000,
         headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
     })
@@ -125,7 +125,7 @@ _searchByTeam = () => {
             this.setState(newState);
         })
         .then(() =>{
-            axios.get(`http://api.football-data.org/v1/teams/${this.state.team.id}`, {
+            axios.get(`https://api.football-data.org/v1/teams/${this.state.team.id}`, {
             timeout: 5000,
             headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}
             })

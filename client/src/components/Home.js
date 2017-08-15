@@ -30,7 +30,7 @@ class Home extends Component {
 
 
     componentWillMount (){
-        axios.get('http://api.football-data.org/v1/fixtures', {
+        axios.get('https://api.football-data.org/v1/fixtures', {
             timeout: 5000,
             headers: {'X-Auth-Token': 'f09f3d45f18c4cb2bb456144f36fa451'}            
         })
