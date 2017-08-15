@@ -26,7 +26,8 @@ router.post("/", (req, res) => {
 })
 
 router.put("/:id", (req, res) => {
-  User.findByIdAndUpdate(req.params.id, {favPlayers: req.body.favPlayers}).then((favPlayers) =>{
+  User.findByIdAndUpdate(req.params.id, {favPlayers: req.body.favPlayers})
+  .then((favPlayers) =>{
     res.json(favPlayers);
   })
 });

@@ -54,6 +54,7 @@ class App extends Component {
     super();
     this.state = {
         user: {
+          id: "",
           username: "",
           accountCreated: "",
           favTeams: [],
@@ -78,7 +79,8 @@ class App extends Component {
     newState.user.username = document.getElementById("usernameInputOnForm").value;
     this.setState(newState);
     axios.post('/api/user', this.state.user).then((res) => {
-      console.log("success");
+      newState.user.id = res.data._id;
+      this.setState(newState)
     })
   };
 
@@ -89,11 +91,22 @@ _addPlayerToUserFavorites = (newPlayer, index) => {
   const payload = {
     favPlayers: newState.favPlayers
   };
-  console.log(payload);
-  axios.put(`api/user/${this.state.id}`, payload).then((res) => {
+  axios.put(`api/user/${this.state.user.id}`, payload).then((res) => {
     console.log("Successfully Updated")
     this.setState({user: newState});
     
+  })
+}
+
+_addTeamToUserFavorites = (newTeam, index) => {
+  const newState = {...this.state.user};
+  newState.favTeams.push(newTeam.teamInfo.team);
+  const payload = {...newState.favTeams};
+  console.log(payload);
+  this.setState({user: newState});
+  axios.put(`api/user/${this.state.user.id}`, payload).then((res) => {
+    console.log("Successfully Updated");
+    console.log(newState);
   })
 }
 
@@ -155,10 +168,10 @@ _searchByTeam = () => {
     <Home searchByTeam={this._searchByTeam} /> );
 
     const teamComponent = () => (
-      <Team teamInfo={this.state} /> );
+      <Team teamInfo={this.state} addTeamToUserFavorites={this._addTeamToUserFavorites} /> );
 
     const rosterComponent = () => (
-      <Roster addPlayerToUserFavorites={this._addPlayerToUserFavorites} teamInfo = {this.state} /> );
+      <Roster addPlayerToUserFavorites={this._addPlayerToUserFavorites} teamInfo={this.state} /> );
 
     const userComponent = () => (
       <User userInfo = {this.state.user} changeUsername={this._changeUsername} handleSubmit={this._handleSubmit}/>);

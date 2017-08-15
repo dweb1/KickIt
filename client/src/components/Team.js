@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Fixture from './Fixture'
 import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
@@ -40,35 +40,44 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
 }
 `;
 
-const Team = (props) => {
+class Team extends Component {
+
+    _addTeamToUser = () => {
+        this.props.addTeamToUserFavorites(this.props);
+      }
     
-    const handleClick = (e, history) => {
-        props.history.push('/roster');
+    _handleClick = (e, history) => {
+        this.props.history.push('/roster');
     }
 
+    render(){
     return (
         <div>
             <TeamPage>
-                <h2>{props.teamInfo.team.name}</h2>
-                <img height="100" alt={props.teamInfo.team.name} src={props.teamInfo.team.crestUrl} />
-                <Button onClick={handleClick}>
+                <h2>{this.props.teamInfo.team.name}</h2>
+                <button onClick={this._addTeamToUser}>
+                    Add This Team to Favorites
+                </button>
+                <img height="100" alt={this.props.teamInfo.team.name} src={this.props.teamInfo.team.crestUrl} />
+                <Button onClick={this._handleClick}>
                     View Roster
                 </Button>
                 <ScoreBox>
                 <div>
                 <h3>Upcoming Fixtures</h3>
-                    {props.teamInfo.searchedTeamFixtures.map((fixture, i) => {
-                        return (fixture.status !== "FINISHED" ? <Fixture key={i} status={fixture.status} date={fixture.date} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName} /> : null)})}
+                    {this.props.teamInfo.searchedTeamFixtures.map((fixture, i) => {
+                        return fixture.status !== "FINISHED" ? <Fixture key={i} status={fixture.status} date={fixture.date} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName} /> : null})}
                 </div>
                 <div>
                 <h3>Recent Results</h3>
-                    {props.teamInfo.searchedTeamFixtures.map((fixture, i) => {
+                    {this.props.teamInfo.searchedTeamFixtures.map((fixture, i) => {
                         return (fixture.status === "FINISHED" ? <Fixture key={i} status={fixture.status} result={fixture.result} homeTeam={fixture.homeTeamName} awayTeam={fixture.awayTeamName}  /> : null)})}
                 </div>
                 </ScoreBox>
             </TeamPage>
         </div>
     )
+}
 }
 
 export default withRouter(Team);
