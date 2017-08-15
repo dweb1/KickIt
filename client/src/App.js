@@ -43,7 +43,7 @@ a {
 `;
 
 const HomeScreen = styled.div`
-  background: url("https://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
+  background: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
   background-size: 100% 100%;
   height:750px;
 `
