@@ -7,7 +7,9 @@ const User = (props) => {
     return (
         (props.userInfo.username !== "" ? 
         <div>
-            <UserProfile userInfo={props.userInfo}/>
+            <UserProfile 
+                userInfo={props.userInfo}
+                removePlayerFromUserFavs={props.removePlayerFromUserFavs}/>
         </div> :
         <div>
             <NewUserForm userInfo={props.user} changeUsername={props.changeUsername} handleSubmit={props.handleSubmit}/>

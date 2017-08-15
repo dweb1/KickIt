@@ -1,23 +1,46 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const FavoritesBox = styled.div`
+    border-style: dashed;
+    border-width: 8px;
+    background-color: white;
+    overflow-y: scroll;
+    width: 350px;
+`;
 
 const UserProfile = (props) => {
-    
+
     return (
         <div>
             <h3>{props.userInfo.username}'s Profile</h3>
             <div>
-                <h4>Favorite Teams</h4>
-                <ul>
-                {props.userInfo.favTeams.map((team, i) => {
-                return <li key={i} id={i}>{team.name} </li>})}
-                </ul>
+                <FavoritesBox>
+                    <h4>Favorite Teams</h4>
+                    <ul>
+                    {props.userInfo.favTeams.map((team, i) => {
+                    return 
+                        <li key={i} id={i}>
+                            {team.name}
+                        </li>})}
+                    </ul>
+                </FavoritesBox>
             </div>
             <div>
-                <h4>Favorite Players</h4>
-                <ul>
-                {props.userInfo.favPlayers.map((player, i) => {
-                return <li key={i} id={i}>{player.name} </li>})}
-                </ul>
+                <FavoritesBox>
+                    <h4>Favorite Players</h4>
+                    <ul>
+                    {props.userInfo.favPlayers.map((player, i) => {
+                    return (
+                        <li key={i} id={i}>
+                            <p>{player.name}</p>
+                            <button onClick={() => props.removePlayerFromUserFavs(i)}>
+                                Remove
+                            </button>
+                        </li>
+                    )})}
+                    </ul>
+                </FavoritesBox>
             </div>
         </div>
     )

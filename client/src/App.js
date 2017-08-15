@@ -164,6 +164,13 @@ _searchByTeam = () => {
                 })
             })
         }
+  
+  _removePlayerFromUserFavs = (index) => {
+    console.log(index)
+    const newState = {...this.state};
+    newState.user.favPlayers.splice(index, 1);
+    this.setState(newState);
+  };
 
   render() {
     const homeComponent = () => (
@@ -176,7 +183,11 @@ _searchByTeam = () => {
       <Roster addPlayerToUserFavorites={this._addPlayerToUserFavorites} teamInfo={this.state} /> );
 
     const userComponent = () => (
-      <User userInfo = {this.state.user} changeUsername={this._changeUsername} handleSubmit={this._handleSubmit}/>);
+      <User 
+        userInfo = {this.state.user} 
+        changeUsername={this._changeUsername} 
+        handleSubmit={this._handleSubmit}
+        removePlayerFromUserFavs={this._removePlayerFromUserFavs}/>);
 
     return (
       <Router>
