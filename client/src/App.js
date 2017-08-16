@@ -43,7 +43,7 @@ a {
 `;
 
 const HomeScreen = styled.div`
-  background: url("http://stadiumdb.com/pictures/stadiums/ita/juventus_stadium/juventus_stadium08.jpg") no-repeat center center;
+  background: url("https://i.imgur.com/2wmaeks.jpg") no-repeat center center;
   background-size: 100% 100%;
   height:750px;
 `
@@ -134,9 +134,9 @@ _searchByTeam = () => {
                         team: {
                             id: res.data.id,
                             name: res.data.name,
-                            crestUrl: res.data.crestUrl,
-                            roster: res.data._links.players.href,
-                            fixtures: res.data._links.fixtures.href
+                            crestUrl: res.data.crestUrl.replace('http', 'https'),
+                            roster: res.data._links.players.href.replace('http', 'https'),
+                            fixtures: res.data._links.fixtures.href.replace('http', 'https')
                         }
                     })
                 })
