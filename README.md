@@ -14,7 +14,7 @@ This app utilizes the public API - api.football-data - to update users on curren
 8. Heroku
 9. api.football-data.org Public Api data
 
-## Unsolved Problems/Future Development
+### Unsolved Problems/Future Development
 1. Display League standings
 2. User authentication
 3. Display multiple results from searches to choose the proper team
