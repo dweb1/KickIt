@@ -30,4 +30,4 @@ https://kickitapp.herokuapp.com/
 
 
 ### Wireframes
-![ERDs](http://i.imgur.com/Bm4wPAn.jpg "ERDs")
+![Wireframes](http://i.imgur.com/Bm4wPAn.jpg "Wireframes")
