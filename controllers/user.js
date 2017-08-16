@@ -22,28 +22,27 @@ router.get("/:userId/favPlayers", (req, res) => {
   })
 })
 
-router.get("/:userId/favPlayers/:favPlayerId", (req, res) => {
-  // var foundUserFav = "";
-  // console.log(User);
-  // User.findById(req.params.userId).then((user) => {
-  //   foundUserFav = user.favPlayers;
-  //   console.log(foundUserFav);
-  //   console.log(req.params.favPlayerId);
-  //   foundUserFav.findById(req.params.favPlayerId).then((player) => {
-  //     console.log(player);
-  // })
+// router.get("/:userId/favPlayers/delete/:favPlayerId", (req, res) => {
+//   var foundUserFav = "";
+//   // console.log(User);
+//   User.findById(req.params.userId).then((user) => {
+//     foundUserFav = user.favPlayers;
+//     // console.log(foundUserFav);
+//     console.log(req.params.favPlayerId);
+//     // foundUserFav.findById(req.params.favPlayerId).then((player) => {
+//     //   console.log(player);
+//   })
 
-  // // })
-  // // console.log(route);
-  // // console.log(playerId)
-  // // route.findById(req.params.favPlayerId).then((player) => {
-  // //   console.log(player);
+//   })
+//   console.log(route);
+//   console.log(playerId)
+//   route.findById(req.params.favPlayerId).then((player) => {
+//     console.log(player);
     
-  //   // var array = user.favPlayers;
-  //   // var foundPlayer = array.indexOf({playerId});
-  //   // res.json(user.favPlayers._id);
+//     var array = user.favPlayers;
+//     var foundPlayer = array.indexOf({playerId});
+//     res.json(user.favPlayers._id);
   // })
-})
 
 router.post("/", (req, res) => {
   const newUser = new User();
@@ -87,9 +86,11 @@ router.put("/:id/updatefavteams", (req, res) => {
 //   })
 
   router.delete("/:userId/favPlayers/:favPlayerId", (req, res) => {
-    User.findById(req.params.userId).then(user => {
+    User.findById(req.params.userId)
+    .then(user => {
       const newFavPlayers = user.favPlayers.filter(favPlayer => {
-        return favPlayer.id !== req.params.favPlayerId
+        console.log(favPlayer._id);
+        return favPlayer._id !== req.params.favPlayerId
       });
       user.favPlayers = newFavPlayers;
       return user.save();

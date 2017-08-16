@@ -73,7 +73,6 @@ class App extends Component {
     }
 
   _handleSubmit = (event) => {
-    // event.preventDefault();
     const newState = {...this.state};
     newState.user.accountCreated = new Date();
     newState.user.username = document.getElementById("usernameInputOnForm").value;
@@ -172,7 +171,7 @@ _searchByTeam = () => {
     const payload = {
       favPlayers: newState.favPlayers
     };
-    axios.delete(`api/user/${this.state.user.id}/favPlayers/${this.state.user.favPlayers.id}`, payload)
+    axios.delete(`api/user/${this.state.user.id}/favPlayers/${this.state.user.favPlayers._id}`, payload)
       .then((res) => {
         console.log("Successfully Deleted");
       })
@@ -185,7 +184,7 @@ _searchByTeam = () => {
     const payload = {
       favTeams: newState.favTeams
     };
-    axios.delete(`api/user/${this.state.user.id}/favTeams/${this.state.user.favTeams.id}`, payload)
+    axios.delete(`api/user/${this.state.user.id}/favTeams/${this.state.user.favTeams._id}`, payload)
       .then((res) => {
         console.log("Successfully Deleted");
       })
