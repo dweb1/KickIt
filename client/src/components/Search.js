@@ -22,6 +22,10 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
 }
 `;
 
+const SearchHeader = styled.div`
+  font-family: 'Alfa Slab One', cursive;
+`
+
 const SearchButton = Button.extend`
 background-color: green;
 box-shadow: 0px 5px 0px 0px rgba(0%, 100%, 0%)
@@ -38,7 +42,9 @@ const Search = (props) => {
 
     return (
       <div>
+      <SearchHeader>
       <strong>Search for Team</strong>
+      </SearchHeader>
 
       <div className="search">
         <form id="team-search-form" method="get" >

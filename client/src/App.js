@@ -172,10 +172,9 @@ _searchByTeam = () => {
     const payload = {
       favPlayers: newState.favPlayers
     };
-    axios.put(`api/user/${this.state.user.id}/updatefavplayers`, payload)
+    axios.delete(`api/user/${this.state.user.id}/favPlayers/${this.state.user.favPlayers.id}`, payload)
       .then((res) => {
-        console.log("Successfully Updated");
-        this.setState(newState.user.favPlayers);
+        console.log("Successfully Deleted");
       })
     }
 
@@ -186,10 +185,9 @@ _searchByTeam = () => {
     const payload = {
       favTeams: newState.favTeams
     };
-    axios.put(`api/user/${this.state.user.id}/updatefavteams`, payload)
+    axios.delete(`api/user/${this.state.user.id}/favTeams/${this.state.user.favTeams.id}`, payload)
       .then((res) => {
-        console.log("Successfully Updated");
-        this.setState(newState.user.favTeams);
+        console.log("Successfully Deleted");
       })
     };
 

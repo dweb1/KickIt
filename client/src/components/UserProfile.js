@@ -9,11 +9,17 @@ const FavoritesBox = styled.div`
     width: 350px;
 `;
 
+const UserName = styled.div`
+    font-family: 'Alfa Slab One', cursive;
+    `
+
 const UserProfile = (props) => {
 
     return (
         <div>
+        <UserName>
             <h3>{props.userInfo.username}'s Profile</h3>
+        </UserName>
             <div>
                 <FavoritesBox>
                     <h4>Favorite Teams</h4>
