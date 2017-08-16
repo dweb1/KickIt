@@ -20,15 +20,15 @@ This app utilizes the public API - api.football-data - to update users on curren
 3. Display multiple results from searches to choose the proper team
 4. User edit
 
-## Trello link
+### Trello link
 https://trello.com/b/eC4OcBxh/project-3-kickit
 
-## Heroku link
+### Heroku link
 https://kickitapp.herokuapp.com/
 
-## ERDs
+### ERDs
 ![ERDs](http://i.imgur.com/2nXJILr.jpg?1 "ERDs")
 
 
-## Wireframes
+### Wireframes
 ![ERDs](http://i.imgur.com/Bm4wPAn.jpg "ERDs")
