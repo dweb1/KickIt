@@ -9,10 +9,9 @@ This app utilizes the public API - api.football-data - to update users on curren
 3. React
 4. Mockingbird
 5. Html/CSS/JavaScript
-6. Materialize
-7. Express
-8. Heroku
-9. api.football-data.org Public Api data
+6. Express
+7. Heroku
+8. api.football-data.org Public Api data
 
 ### Unsolved Problems/Future Development
 1. Display League standings
