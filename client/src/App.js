@@ -44,8 +44,9 @@ a {
 
 const HomeScreen = styled.div`
   background: url("https://i.imgur.com/2wmaeks.jpg") no-repeat center center;
-  background-size: 100% 100%;
-  height:100%;
+  background-size: cover;
+  height: 100vh;
+  background-attachment: fixed
 `
 
 class App extends Component {
