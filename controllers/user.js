@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     res.json(user);
   });
 });
+ 
 
 router.get("/:id", (req, res) => {
   User.findById(req.params.id).then((user) => {
