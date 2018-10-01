@@ -1,5 +1,7 @@
 ## KickIt - A Soccer Score and Stat App
 
+![alt text](https://is4-ssl.mzstatic.com/image/thumb/Purple117/v4/6f/0d/a6/6f0da616-456d-1acd-1696-c2b95552d1c8/source/256x256bb.jpg)
+
 ### Description of App
 This app utilizes the public API - api.football-data - to update users on current and recent scores from around the world. The user can create an account, favorite specific players and teams, and view information about specific teams and players.
 
